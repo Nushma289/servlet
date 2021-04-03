@@ -1,0 +1,443 @@
+SERVLETS HANDSON:
+1)
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/J2EEproject/FirstServlet1">
+Name:<input type="text" name="n1">
+<input type="submit">
+</form>
+
+</body>
+</html>
+
+
+package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class FirstServlet1
+ */
+@WebServlet("/FirstServlet1")
+public class FirstServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FirstServlet1() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		String name=request.getParameter("n1");
+		request.setAttribute("username" ,name);
+		RequestDispatcher rd=request.getRequestDispatcher("/SecondServlet1");
+		rd.forward(request, response);
+		pw.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}
+
+package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SecondServlet1
+ */
+@WebServlet("/SecondServlet1")
+public class SecondServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SecondServlet1() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		pw.println("Welcome "+request.getAttribute("username")+" !!!!");
+		pw.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}
+output:package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SecondServlet1
+ */
+@WebServlet("/SecondServlet1")
+public class SecondServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SecondServlet1() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		pw.println("Welcome "+request.getAttribute("username")+" !!!!");
+		pw.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}
+output:package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SecondServlet1
+ */
+@WebServlet("/SecondServlet1")
+public class SecondServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SecondServlet1() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		pw.println("Welcome "+request.getAttribute("username")+" !!!!");
+		pw.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}
+package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class SecondServlet1
+ */
+@WebServlet("/SecondServlet1")
+public class SecondServlet1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SecondServlet1() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter pw=response.getWriter();
+		pw.println("Welcome "+request.getAttribute("username")+" !!!!");
+		pw.close();
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}
+OUTPUT:
+Welcome Nush !!!! 
+
+
+
+
+2)Fifth.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+</head>
+<body>
+<h1 align="center">Registration Form</h1>
+<br/>
+
+<form action="http://localhost:8080/J2EEproject/TwentySecondServlet">
+FirstName:<input type="text" name="n1"><br/><br/>
+LastName:<input type="text" name="n2"><br/><br/>
+Address:<input type="text" name="n3"><br/><br/>
+E-mail:
+ <input type="email" name="email">
+<br/><br/>
+city:<input type="text" name="city"><br/><br/>
+state:<input type="text" name="state"><br/><br/>
+pet name:<input type="text" name="n4"><br/><br/>
+Telephone:
+ <input type="tel" name="usrtel">
+<br/><br/>
+pet type:<input type="text" name="n5"><br/><br/>
+pet age:<input type="text" value="age"><br><br/>
+
+<input type="submit" value="click here">
+</form>
+  </body>
+</html>
+
+
+package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class TwentySecondServlet
+ */
+@WebServlet("/TwentySecondServlet")
+public class TwentySecondServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TwentySecondServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 response.setContentType("text/html");
+	        PrintWriter pw=response.getWriter();
+	        String fname=request.getParameter("n1");
+	        System.out.println(fname);
+	        String lname=request.getParameter("n2");
+	        System.out.println(lname);
+	        String addr=request.getParameter("n3");
+	        System.out.println(addr);
+	        String email=request.getParameter("email");
+	        System.out.println(email);
+	        String city=request.getParameter("city");
+	        System.out.println(city);
+	        String state=request.getParameter("state");
+	        System.out.println(state);
+	        String pname=request.getParameter("n4");
+	        System.out.println(pname);
+	        String phno=request.getParameter("usrtel");
+	        System.out.println(phno);
+	        String ptype=request.getParameter("n5");
+	        System.out.println(ptype);
+	        int page=String(parseInt(request.getParameter("age")));
+	        System.out.println(page);
+	        pw.close();
+	      
+	        		    
+	}
+
+	private int String(Object parseInt) {
+		
+		return 0;
+	}
+
+	private Object parseInt(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}
+
+
+
+3)Login.html
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="http://localhost:8080/j2EEProject/LoginServlet">
+LoginId:<input type="text" name="LoginId">
+Password:<input type="text" name="Password">
+<input type="submit" value="signin" >
+ <input type="submit" value="Logout" >
+ </form>
+</body>
+</html>
+
+
+//LoginServlet
+
+
+package com.pack;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+//@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
+private static final long serialVersionUID = 1L;
+       
+    /**
+* @see HttpServlet#HttpServlet()
+     */
+    public LoginServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+/**
+* @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+response.setContentType("text/html");
+PrintWriter pw=response.getWriter();
+String l=request.getParameter("LoginId");  
+   String p=request.getParameter("Password");
+   if(l=="admin" && p =="abcd1234") {
+            RequestDispatcher rd=request.getRequestDispatcher("SuccessServlet");
+            rd.forward(request, response);
+        }
+        else
+        {
+            pw.println("username and password are inCorrect");
+            RequestDispatcher rd=request.getRequestDispatcher("Login.html");
+            rd.include(request, response);
+            pw.close();
+           
+        }
+       
+   
+   
+}
+
+/**
+* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+*/
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+       
+}}
