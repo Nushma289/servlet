@@ -1,0 +1,249 @@
+HANDSON
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Employee Details</h1>
+<table border="1">
+<tr>
+   <th>Employee ID</th>
+   <th>Employee Name</th>
+   <th>Age</th>
+   <th>gender</th>
+   <th>Department</th>
+   <th>basics</th>
+   <th>grade</th>
+</tr>
+<c:forEach items="${empList }" var="empl">
+<tr>
+   <td>${empl.empid }</td>
+   <td>${empl.name }</td>
+   <td>${empl.age }</td>
+   <td>${empl.gender }</td>
+   <td>${empl.dept }</td>
+   <td>${empl.basics }</td>
+   <td>${empl.grade }</td>
+</tr>
+</c:forEach>
+</table>
+</body>
+</html>
+ 
+
+
+[Yesterday 5:16 PM] Amrutha Chintala
+    
+package com.pack;
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+
+
+
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+//import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+
+
+/**
+ * Servlet implementation class Jsphservlet
+ */
+@WebServlet("/Jsphservlet")
+public class Jsphservlet extends HttpServlet {​​​​​​​
+    private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Jsphservlet() {​​​​​​​
+        super();
+        // TODO Auto-generated constructor stub
+    }​​​​​​​
+
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {​​​​​​​
+        response.setContentType("text/html");
+        PrintWriter pw=response.getWriter();
+        //int empid=Integer.parseInt(request.getParameter("id"));
+        String empname=request.getParameter("name");
+        int age=Integer.parseInt(request.getParameter("age"));
+        
+        String gender=request.getParameter("gender");
+        String dept=request.getParameter("dept");
+        double basic=Double.parseDouble(request.getParameter("basic"));
+        String grade=request.getParameter("grade");
+        Random r=new Random();
+        int empid=r.nextInt(99999)+10000;
+        Connection con=null;
+        try {​​​​​​​
+        Class.forName("com.mysql.jdbc.Driver");
+        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc","root","root");
+        PreparedStatement ps=con.prepareStatement("insert into employee123 values(?,?,?,?,?,?,?)");
+        ps.setInt(1, empid);
+        ps.setString(2, empname);
+        ps.setInt(3, age);
+        ps.setString(4, gender);
+        ps.setString(5, dept);
+        ps.setDouble(6, basic);
+        ps.setString(7, grade);
+        int i=ps.executeUpdate();
+        if(i!=0) {​​​​​​​
+        Statement st=con.createStatement();
+        ResultSet rs=st.executeQuery("select * from employee123 where empid=?");
+        List<Employee> l=new ArrayList<>();
+        while(rs.next()) {​​​​​​​
+        Employee emp=new Employee();
+        emp.setEmpid(rs.getInt(1));
+        emp.setEname(rs.getString(2));
+        emp.setAge(rs.getInt(3));
+        emp.setGender(rs.getString(5));
+        emp.setDept(rs.getString(6));
+        emp.setBasic(rs.getDouble(7));
+        emp.setGrade(rs.getString(8));
+        l.add(emp);
+        }​​​​​​​
+        if(l!=null) {​​​​​​​
+        request.setAttribute("empList", l);
+        RequestDispatcher rd=request.getRequestDispatcher("/Employeesearch.jsp");
+        rd.forward(request, response);
+        }​​​​​​​
+
+
+        }​​​​​​​
+        }​​​​​​​
+        catch(Exception e) {​​​​​​​
+        System.out.println(e);
+        }​​​​​​​
+        finally {​​​​​​​
+        if(con!=null)
+        try {​​​​​​​
+        con.close();
+        }​​​​​​​
+        catch(SQLException e) {​​​​​​​
+        e.printStackTrace();
+        }​​​​​​​
+        }​​​​​​​
+        }​​​​​​​
+
+
+
+
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {​​​​​​​
+        
+    }​​​​​​​
+
+
+}​​​​​​​
+ 
+
+
+
+
+
+[Yesterday 5:16 PM] Amrutha Chintala
+    
+package com.pack;
+
+
+public class Employee {​​​​​​​
+private int empid;
+private String ename;
+private int age;
+private String gender;
+private String dept;
+private Double basic;
+private String grade;
+public int getEmpid() {​​​​​​​
+    return empid;
+}​​​​​​​
+public void setEmpid(int empid) {​​​​​​​
+    this.empid = empid;
+}​​​​​​​
+public String getEname() {​​​​​​​
+    return ename;
+}​​​​​​​
+public void setEname(String ename) {​​​​​​​
+    this.ename = ename;
+}​​​​​​​
+public int getAge() {​​​​​​​
+    return age;
+}​​​​​​​
+public void setAge(int age) {​​​​​​​
+    this.age = age;
+}​​​​​​​
+public String getGender() {​​​​​​​
+    return gender;
+}​​​​​​​
+public void setGender(String gender) {​​​​​​​
+    this.gender = gender;
+}​​​​​​​
+public String getDept() {​​​​​​​
+    return dept;
+}​​​​​​​
+public void setDept(String dept) {​​​​​​​
+    this.dept = dept;
+}​​​​​​​
+public Double getBasic() {​​​​​​​
+    return basic;
+}​​​​​​​
+public void setBasic(Double basic) {​​​​​​​
+    this.basic = basic;
+}​​​​​​​
+public String getGrade() {​​​​​​​
+    return grade;
+}​​​​​​​
+public void setGrade(String grade) {​​​​​​​
+    this.grade = grade;
+}​​​​​​​
+public Employee() {​​​​​​​
+    super();
+    // TODO Auto-generated constructor stub
+}​​​​​​​
+
+
+}​​​​​​​
+ 
+
+
+
+
+
+
+
+
+
+
+
